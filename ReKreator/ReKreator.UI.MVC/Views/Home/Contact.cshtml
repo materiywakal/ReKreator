@@ -1,0 +1,73 @@
+﻿@model ReKreator.UI.MVC.Models.Contact.ContactViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Contact us";
+}
+
+<!-- Start Proerty header  -->
+<section id="aa-property-header" style="min-height: 100px; max-height: 250px">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-property-header-inner">
+                    <h2 style="margin-top: 10px">CONTACT US</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Proerty header  -->
+
+<section id="aa-contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-contact-area">
+                    <div class="aa-contact-top">
+                        <div class="aa-contact-top-left">
+                            <img src="~/img/about-us.png"/>
+                        </div>
+                        <div class="aa-contact-top-right" style="height: 300px;">
+                            <h2>Contacts</h2>
+                            <ul class="contact-info-list">
+                                <li> <i class="fa fa-phone"></i> +375-44-777-77-77</li>
+                                <li> <i class="fa fa-envelope-o"></i> godelrekreator@gmail.com</li>
+                                <li> <i class="fa fa-map-marker"></i> Minsk, Rubin Plaza</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="aa-contact-bottom">
+                        <div class="aa-title">
+                            <h2>Send Your Message</h2>
+                            <span></span>
+                            <p>Required fields are marked <strong class="required">*</strong></p>
+                        </div>
+                        <div class="aa-contact-form">
+                            @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new {@class = "contactform"}))
+                            {
+                                if (!User.Identity.IsAuthenticated)
+                                {
+                                    <p class="comment-form-comment">
+                                        <label for="Email">Email</label>
+                                        @Html.EditorFor(o => o.Email)
+                                    </p>
+                                }
+                                <p class="comment-form-url">
+                                    <label for="subject">Subject <span class="required">*</span></label>
+                                    @Html.EditorFor(o => o.Subject)
+                                </p>
+                                <p class="comment-form-comment">
+                                    <label for="comment">Message <span class="required">*</span></label>
+                                    @Html.TextAreaFor(o => o.Text, new {cols = "45", rows = "8"})
+                                </p>
+                                <p class="form-submit">
+                                    <input type="submit" name="submit" class="aa-browse-btn" value="Send Message">
+                                </p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,179 @@
+﻿@using ReKreator.BL.Constants
+@using ReKreator.Domain.Enums
+@using ReKreator.UI.MVC.Models.Event
+@model IEnumerable<ReKreator.UI.MVC.Models.Event.EventViewModel>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "ReKreator";
+    Type enumType = typeof(EventGenre);
+}
+
+<!-- Start slider  -->
+<section id="aa-slider">
+    <div class="aa-slider-area">
+        <!-- Top slider -->
+        <div class="aa-top-slider">
+            @foreach (var view in Model)
+            {
+                var viewdata = view.EventsHoldings.OrderBy(o => o.Time).FirstOrDefault();
+                <!-- Top slider single slide -->
+                <div class="aa-top-slider-single">
+                    <img src="img/promo-banner.jpg" alt="img">
+                    <!-- Top slider content -->
+                    <a href="@Url.Action("Event","Event",new{sourceUrl = view.ShortUrl})">
+                        <div class="aa-top-slider-content">
+                            <span class="aa-top-slider-catg">@view.Title</span>
+                            <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>@viewdata.EventPlace.Title</p>
+                            <span class="aa-top-slider-off">@viewdata.Time.ToString(DateTimeFormats.ShortDateFormat)</span>
+                            <p class="aa-top-slider-price">@viewdata.Time.ToString("t")</p>
+                        </div>
+                    </a>
+                    <!-- / Top slider content -->
+                </div>
+                <!-- / Top slider single slide -->
+            }
+        </div>
+    </div>
+</section>
+<!-- End slider  -->
+<!-- Latest property -->
+<section id="aa-latest-property">
+    <div class="container">
+        <div class="aa-latest-property-area">
+            <div class="aa-title">
+                <h2>Latest Movies</h2>
+                <span></span>
+            </div>
+            <div class="aa-latest-properties-content">
+                <div class="row">
+                    @foreach (var value in ViewData["Movies"] as List<EventViewModel>)
+                    {
+                        <div class="col-md-4">
+                            <article class="aa-properties-item">
+                                <a href="@Url.Action("Event","Event",new{sourceUrl = value.ShortUrl})" class="aa-properties-item-img">
+                                    <img src="@value.PosterUrl" alt="img" style="max-height: 400px;">
+                                </a>
+                                <div class="aa-properties-item-content">
+                                    <div class="aa-properties-info">
+                                        @foreach (Enum subval in Enum.GetValues(enumType))
+                                        {
+                                            if (value.Genre.HasFlag(subval))
+                                            {
+                                                <span>@subval.GetDescription()</span>
+                                            }
+                                        }
+                                    </div>
+                                    <div class="aa-properties-about">
+                                        <h3><a href="@Url.Action("Event","Event",new{sourceUrl = value.ShortUrl})">@value.Title</a></h3>
+                                        <p>@(value.Description.Length >= 100 ? value.Description.Substring(0, 100 - 1) + "..." : value.Description)</p>
+                                    </div>
+                                    <div class="aa-properties-detial">
+                                        <span class="aa-price">
+                                            Event ends at @value.ExpiryDate.ToString(DateTimeFormats.ShortDateFormat)
+                                        </span>
+                                        <a href="@Url.Action("Event","Event",new{sourceUrl = value.ShortUrl})" class="aa-secondary-btn">View Details</a>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- / Latest property -->
+<!-- Latest property -->
+<section id="aa-latest-property">
+    <div class="container">
+        <div class="aa-latest-property-area">
+            <div class="aa-title">
+                <h2>Latest Concerts</h2>
+                <span></span>
+            </div>
+            <div class="aa-latest-properties-content">
+                <div class="row">
+                    @foreach (var value in ViewData["Concerts"] as List<EventViewModel>)
+                    {
+                        <div class="col-md-4">
+                            <article class="aa-properties-item">
+                                <a href="@Url.Action("Event","Event",new{sourceUrl = value.ShortUrl})" class="aa-properties-item-img">
+                                    <img src="@value.PosterUrl" alt="img" style="max-height: 400px;">
+                                </a>
+                                <div class="aa-properties-item-content">
+                                    <div class="aa-properties-info">
+                                        @foreach (Enum subval in Enum.GetValues(enumType))
+                                        {
+                                            if (value.Genre.HasFlag(subval))
+                                            {
+                                                <span>@subval.GetDescription()</span>
+                                            }
+                                        }
+                                    </div>
+                                    <div class="aa-properties-about">
+                                        <h3><a href="@Url.Action("Event","Event",new{sourceUrl = value.ShortUrl})">@value.Title</a></h3>
+                                        <p>@(value.Description.Length >= 100 ? value.Description.Substring(0, 100 - 1) + "..." : value.Description)</p>
+                                    </div>
+                                    <div class="aa-properties-detial">
+                                        <span class="aa-price">
+                                            Event ends at @value.ExpiryDate.ToString(DateTimeFormats.ShortDateFormat)
+                                        </span>
+                                        <a href="@Url.Action("Event","Event",new{sourceUrl = value.ShortUrl})" class="aa-secondary-btn">View Details</a>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- / Latest property -->
+<!-- Latest property -->
+<section id="aa-latest-property">
+    <div class="container">
+        <div class="aa-latest-property-area">
+            <div class="aa-title">
+                <h2>Latest Performances</h2>
+                <span></span>
+            </div>
+            <div class="aa-latest-properties-content">
+                <div class="row">
+                    @foreach (var value in ViewData["Performances"] as List<EventViewModel>)
+                    {
+                        <div class="col-md-4">
+                            <article class="aa-properties-item">
+                                <a href="@Url.Action("Event","Event",new{sourceUrl = value.ShortUrl})" class="aa-properties-item-img">
+                                    <img src="@value.PosterUrl" alt="img" style="max-height: 400px;">
+                                </a>
+                                <div class="aa-properties-item-content">
+                                    <div class="aa-properties-info">
+                                        @foreach (Enum subval in Enum.GetValues(enumType))
+                                        {
+                                            if (value.Genre.HasFlag(subval))
+                                            {
+                                                <span>@subval.GetDescription()</span>
+                                            }
+                                        }
+                                    </div>
+                                    <div class="aa-properties-about">
+                                        <h3><a href="@Url.Action("Event","Event",new{sourceUrl = value.ShortUrl})">@value.Title</a></h3>
+                                        <p>@(value.Description.Length >= 100 ? value.Description.Substring(0, 100 - 1) + "..." : value.Description)</p>
+                                    </div>
+                                    <div class="aa-properties-detial">
+                                        <span class="aa-price">
+                                            Event ends at @value.ExpiryDate.ToString(DateTimeFormats.ShortDateFormat)
+                                        </span>
+                                        <a href="@Url.Action("Event","Event",new{sourceUrl = value.ShortUrl})" class="aa-secondary-btn">View Details</a>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- / Latest property -->

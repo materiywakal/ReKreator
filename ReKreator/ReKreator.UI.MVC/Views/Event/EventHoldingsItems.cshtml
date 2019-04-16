@@ -1,0 +1,34 @@
+﻿@using ReKreator.BL.Constants
+@using ReKreator.Domain.Enums
+@using ReKreator.UI.MVC.Constants
+@model IEnumerable<ReKreator.UI.MVC.Models.EventHolding.EventHoldingViewModel>
+
+<input value="@ViewData["totalSize"]" id="total-size" hidden/>
+
+@foreach (var value in Model)
+{
+    <div class="col-md-3 col-sm-4 events-custom-grid">
+        <article class="aa-blog-single">
+            <figure class="aa-blog-img">
+                <a asp-action="Favorite" asp-route-id="@value.EventHoldingId"><img alt="img" src=@value.PosterUrl class="event-grid-image"></a>
+                <span class="aa-date-tag">@value.Time.ToString(DateTimeFormats.ShortDateFormat)</span>
+            </figure>
+            <div class="aa-blog-single-content">
+                <h3><a asp-action="Favorite" asp-route-id="@value.EventHoldingId">@value.Title</a></h3>
+                <p style="font-size: 15px">@(value.Description.Length >= StringLength.EventHoldingDescriptionLength ? value.Description.Substring(0, StringLength.EventHoldingDescriptionLength - 1) + "..." : value.Description)</p>
+                @if (value.Genres != EventGenre.None)
+                {
+                    <div class="aa-blog-single-bottom">
+                        @foreach (Enum enumValue in Enum.GetValues(@value.Genres.GetType()))
+                        {
+                            if (value.Genres.HasFlag(enumValue) && (EventGenre) enumValue != EventGenre.None)
+                            {
+                                <li>@enumValue.GetDescription()</li>
+                            }
+                        }
+                    </div>
+                }
+            </div>
+        </article>
+    </div>
+}

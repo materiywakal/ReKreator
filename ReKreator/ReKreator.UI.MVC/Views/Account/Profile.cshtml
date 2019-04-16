@@ -1,0 +1,74 @@
+﻿@using ReKreator.BL.Constants
+@model ReKreator.UI.MVC.Models.Account.AccountProfileViewModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Profile";
+}
+
+<section id="aa-property-header" style="min-height: 100px; max-height: 250px">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-property-header-inner">
+                    <h2 style="margin-top: 10px">Profile</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="aa-blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="aa-contact" style="padding-top: 0;padding-bottom: 20px">
+                    <div class="aa-contact-area">
+                        <div class="aa-contact-bottom">
+                            <div class="aa-contact-form contactform aa-user-profile">
+                                <h2>@Model.UserName</h2>
+                                <p>
+                                    <label asp-for="@Model.FirstName"></label>
+                                    <label>: @Model.FirstName</label>
+                                </p>
+                                <p>
+                                    <label asp-for="@Model.LastName"></label>
+                                    <label>: @Model.LastName</label>
+                                </p>
+                                <p>
+                                    <label asp-for="@Model.Email"></label>
+                                    <label>: @Model.Email</label>
+                                </p>
+                                <p>
+                                    <label asp-for="@Model.NoveltyMailingPeriod"></label>
+                                    <label>: @Model.NoveltyMailingPeriod</label>
+                                </p>
+                                <p>
+                                    <label asp-for="@Model.Roles"></label>
+                                    <label>
+                                        :
+                                        @foreach (var role in @Model.Roles)
+                                        {
+                                            @role
+                                        }
+                                    </label>
+                                </p>
+                                <p>
+                                    <label asp-for="@Model.RegistrationDate"></label>
+                                    <label>: @Model.RegistrationDate.ToString(DateTimeFormats.ShortDateFormat)</label>
+                                </p>
+                                <div class="form-submit">
+                                    <a asp-action="Edit"><input type="button" value="Edit profile"></a>
+                                    <a asp-action="EditPassword"><input type="button" value="Edit password"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <a asp-action="Index" asp-controller="Home">Go to home</a>
+    </div>
+</section>

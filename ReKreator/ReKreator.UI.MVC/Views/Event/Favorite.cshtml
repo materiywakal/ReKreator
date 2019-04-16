@@ -1,0 +1,116 @@
+﻿@using ReKreator.BL.Constants
+@using ReKreator.Domain.Enums
+@using ReKreator.UI.MVC.Models.EventHolding
+@model ReKreator.UI.MVC.Models.EventHolding.EventHoldingDetailsViewModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Favorite";
+}
+
+<section id="aa-property-header" style="min-height: 100px; max-height: 250px">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-property-header-inner">
+                    <h2 style="margin-top: 10px">Favorite</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="aa-blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-blog-area">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="aa-blog-content">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <article class="aa-blog-single aa-blog-details" style="display: flex">
+                                            <figure class="aa-blog-img" style="margin-right: 2rem">
+                                                <img alt="img" src="@Model.PosterUrl" style="width: 90%">
+                                                <span class="aa-date-tag" style="font-size: 22px">@Model.Time.ToString(DateTimeFormats.ShortTimeFormat)</span>
+                                            </figure>
+                                            <div class="aa-blog-single-content">
+                                                <h1><a target="_blank" rel="noopener noreferrer" href="@Model.SourceUrl">@Model.Title</a></h1>
+                                                <p style="margin-top: 1rem">@Model.Description</p>
+                                                <h2>Place</h2>
+                                                <p>@Model.Place</p>
+                                                <h2>Date</h2>
+                                                <p>@Model.Time.ToString(DateTimeFormats.ShortDateFormat)</p>
+                                                <h3>Type</h3>
+                                                <p>@Model.Type</p>
+                                                <h3>Genres</h3>
+                                                <p>
+                                                    @foreach (Enum enumValue in Enum.GetValues(@Model.Genres.GetType()))
+                                                    {
+                                                        if (@Model.Genres.HasFlag(enumValue) && (EventGenre)enumValue != EventGenre.None)
+                                                        {
+                                                            <li>@enumValue.GetDescription()</li>
+                                                        }
+                                                    }
+                                                </p>
+                                                <h3>Notify before event</h3>
+                                                <p>
+                                                    @foreach (NotificationPeriodViewModel enumValue in Enum.GetValues(typeof(NotificationPeriodViewModel)))
+                                                    {
+                                                        if (enumValue != NotificationPeriodViewModel.None)
+                                                        {
+                                                            var numberValue = (int)enumValue;
+                                                            <div>
+                                                                <input type="checkbox" name="checkbox" id="@enumValue" value="@numberValue" @(Model.NotificationsPeriod.HasFlag(enumValue) ? "checked" : "")
+                                                                        style="zoom: 1.5; margin-right: 1rem"/>
+                                                                
+                                                                <label for="@enumValue" style="font-size: 16px; font-weight: normal">@enumValue</label>
+                                                            </div>
+                                                        }
+                                                    }
+                                                </p>
+
+                                            </div>
+                                        </article>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <p class="form-submit aa-center-submit-btn">
+                                            <input type="hidden" value="@Model.EventHoldingId" id="event-holding-id" />
+                                            <a asp-action="Delete" asp-route-id="@Model.EventHoldingId"><input type="button" value="Delete" style="margin-top: -1rem" /></a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <a asp-action="Favorites">Back to favorites</a>
+    </div>
+</section>
+
+<script>
+    $(document).ready(function () {
+    
+        $(':checkbox').change(function () {
+            var requestData = {
+                EventHoldingId: parseInt($("#event-holding-id")[0].value),
+                NotificationPeriods: []
+            };
+            $("input[name='checkbox']:checked").each(function () {
+                requestData.NotificationPeriods.push(parseInt($(this).val()));
+            });
+            $.ajax({
+                type: "POST",
+                url: "/Event/ChangeNotificationBeforeEvent",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(requestData),
+                success: function (data) {
+                }
+            });
+        });
+    });
+</script>

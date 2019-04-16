@@ -1,0 +1,103 @@
+﻿@using ReKreator.UI.MVC.Models.Event.Enums
+@model ReKreator.UI.MVC.Models.Event.EventsViewModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = ViewData["type"] + "s";
+}
+
+<section id="aa-property-header" style="min-height: 100px; max-height: 250px">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-property-header-inner">
+                    <h2 style="margin-top: 10px">@ViewData["Title"]</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="aa-advance-search">
+    <div class="container">
+        <div class="aa-advance-search-area" style="margin-top: -20px; min-height: 100px">
+            <div class="form">
+                <div class="aa-advance-search-top">
+                    <div class="row">
+                        <input type="hidden" value="@Model.EventFilter.Type" id="event-type"/>
+                        <div class="col-md-3">
+                            <div class="aa-single-advance-search">
+                                <label for="events-keyword-search">Keyword</label>
+                                <input type="text" id="events-keyword-search" placeholder="Title or description">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="aa-single-advance-search">
+                                <label for="events-bottom-line-date-search">Bottom date line</label>
+                                <input type="date" id="events-bottom-line-date-search" style="font-size: 15px" />
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="aa-single-advance-search">
+                                <label for="events-top-line-date-search">Top date line</label>
+                                <input type="date" id="events-top-line-date-search" style="font-size: 15px" />
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="aa-single-advance-search">
+                                <label for="events-genre-search" style="margin-top: -1rem">Genre</label>
+                                <select asp-for="@Model.EventFilter.Genres" asp-items="@(ViewData["type"].ToString() == "Movie" ? Html.GetEnumSelectList<MovieGenresViewModel>(): 
+                                                                                             ViewData["type"].ToString() == "Theatre" ? Html.GetEnumSelectList<TheatreGenresViewModel>() :
+                                                                                                 ViewData["type"].ToString() == "Concert" ? Html.GetEnumSelectList<ConcertGenresViewModel>() : Html.GetEnumSelectList<EventGenreViewModel>())" id="events-genre-search"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="aa-single-advance-search">
+                                <label for="events-obsolete-search" style="display: block">Show obsoletes?</label>
+                                <input name="is-show-obsolete" type="checkbox" id="events-obsolete-search" style="zoom: 2" />
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="aa-single-advance-search">
+                                <input class="aa-search-btn" id="events-clear-filter" type="button" value="Clear" style="font-size: 15px; height: 5rem; margin-top: 1rem">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="aa-blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-blog-area">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="aa-blog-content">
+                                <div class="row" id="paged-data">
+                                    @Html.Partial("EventItems", Model.Events)
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="aa-properties-content-bottom">
+                                            <nav style="text-align: center">
+                                                <div id="pagination"></div>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript" src="~/js/eventsPagination.js"></script>

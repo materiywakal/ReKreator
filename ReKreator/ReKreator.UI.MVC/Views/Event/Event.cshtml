@@ -1,0 +1,130 @@
+﻿@using ReKreator.Domain
+@using ReKreator.Domain.Enums
+@model ReKreator.UI.MVC.Models.Event.EventViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Event";
+    Type enumType = Model.Genre.GetType();
+    int count = 0;
+}
+
+<script>
+    function ToFavorites(holdingId)
+    {
+        $.ajax({
+            type: "GET",
+            url: "/Event/AddToFavorites?="+holdingId,
+            contentType: "application/json; charset=utf-8",
+            success: function() {
+                alert("Favorite event added.");
+                $("#" + holdingId)[0].innerText = "In favorites";
+                $("#" + holdingId).prop("onclick", null).off("click");
+            },
+            timeout: 5000
+        });
+    }
+    function ShowMore(item) {
+        $(".hiddendiv").css("display","block");
+        $(item).remove();
+    }
+</script>
+
+<!-- Start Proerty header  -->
+<section id="aa-property-header" style="max-height: 128px;min-height: 128px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-property-header-inner">
+                    <h2>Blog Details</h2>
+                    <ol class="breadcrumb">
+                        <li><a href="#">HOME</a></li>
+                        <li class="active">Blog Details</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Proerty header  -->
+<!-- Start Blog  -->
+<section id="aa-blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-blog-area">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="aa-blog-content">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <article class="aa-blog-single aa-blog-details">
+                                            <figure class="aa-blog-img" align="center">
+                                                <a href="#"><img alt="img" src="@Model.PosterUrl"></a>
+                                                <span class="aa-date-tag" style="font-size: 22px"><a href="@Model.SourceUrl">Origin</a></span>
+                                            </figure>
+                                            <div class="aa-blog-single-content">
+                                                <h2 align="center">@Model.Title</h2>
+                                                <p>@Model.Description</p>
+                                                <h2 align="center">Event holdings</h2>
+                                                @foreach (var obj in @Model.EventsHoldings)
+                                                {
+                                                    <div class="@(count<15?"":"hiddendiv")" style="@(count<15?"display:block;":"display:none;")">
+                                                        @obj.Time @obj.EventPlace.Title
+                                                        @if (User.Identity.IsAuthenticated)
+                                                        {
+                                                            bool flag = false;
+                                                            foreach (var item in ViewData["Favorites"] as IEnumerable<EventHolding_User>)
+                                                            {
+                                                                if (item.EventHoldingId == @obj.EventHoldingId)
+                                                                {
+                                                                    flag = true;
+                                                                    break;
+                                                                }
+                                                            }
+                                                            if (!flag)
+                                                            {
+                                                                <button id="@obj.EventHoldingId" onclick="ToFavorites(@obj.EventHoldingId)" style="background-color: transparent; color: #555; border: 2px solid #ccc; font-size: 10px; font-weight: 400; margin-top: 10px; padding: 6px 12px; transition: all 0.5s;">To favorites</button>
+                                                            }
+                                                            else
+                                                            {
+                                                                <button id="@obj.EventHoldingId" style="background-color: transparent; color: #555; border: 2px solid #ccc; font-size: 10px; font-weight: 400; margin-top: 10px; padding: 6px 12px; transition: all 0.5s;">In favorites</button>
+                                                            }
+                                                        }
+                                                    </div>
+                                                    count++;
+                                                }
+                                                @if (count >= 15)
+                                                {
+                                                    <button onclick="ShowMore(this)" style="background-color: transparent; color: #555; border: 2px solid #ccc; font-size: 16px; font-weight: 400; margin-top: 10px; padding: 6px 12px; transition: all 0.5s;">Show more</button>
+                                                }
+                                            </div>
+                                        </article>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Start blog sidebar -->
+                        <div class="col-md-4">
+                            <aside class="aa-blog-sidebar">
+                                <!-- Start single sidebar -->
+                                <div class="aa-blog-sidebar-single">
+                                    <h2 align="center">Genres</h2>
+                                    <ul class="aa-blog-catg">
+                                        @foreach (Enum value in Enum.GetValues(enumType))
+                                        {
+                                            if (Model.Genre.HasFlag(value))
+                                            {
+                                                <li><h3 align="center">@value.GetDescription()</h3></li>
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- / Blog  -->

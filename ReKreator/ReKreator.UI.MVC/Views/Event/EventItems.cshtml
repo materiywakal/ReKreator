@@ -1,0 +1,35 @@
+﻿@using ReKreator.BL.Constants
+@using ReKreator.Domain.Enums
+@using ReKreator.UI.MVC.Constants
+@model IEnumerable<ReKreator.UI.MVC.Models.Event.EventSearchViewModel>
+
+<input value="@ViewData["totalSize"]" id="total-size" hidden />
+
+@foreach (var value in Model)
+{
+    <div class="col-md-3 col-sm-4 events-custom-grid">
+        <article class="aa-blog-single">
+            <figure class="aa-blog-img">
+                <a asp-action="Event" asp-route-sourceUrl="@value.SourceUrl.Split("/").SkipLast(1).Last()"><img alt="img" src=@value.PosterUrl class="event-grid-image"></a>
+            </figure>
+            <div class="aa-blog-single-content">
+                <h3><a asp-action="Event" asp-route-sourceUrl="@value.SourceUrl.Split("/").SkipLast(1).Last()">@value.Title</a></h3>
+                <p style="font-size: 15px">@(value.Description.Length >= StringLength.EventDescriptionLength ? value.Description.Substring(0, StringLength.EventDescriptionLength - 1) + "..." : value.Description)</p>
+                @if (value.Genres != EventGenre.None)
+                {
+                    <div class="aa-blog-single-bottom">
+                        @foreach (Enum enumValue in Enum.GetValues(@value.Genres.GetType()))
+                        {
+                            if (value.Genres.HasFlag(enumValue) && (EventGenre)enumValue != EventGenre.None)
+                            {
+                                <li>@enumValue.GetDescription()</li>
+                            }
+                        }
+                        <hr />
+                        <span>Until @value.ExpiryDate.ToString(DateTimeFormats.ShortDateWithWordMonthFormat)</span>
+                    </div>
+                }
+            </div>
+        </article>
+    </div>
+}

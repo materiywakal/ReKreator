@@ -1,0 +1,54 @@
+﻿@model ReKreator.UI.MVC.Models.Account.AccountRegisterViewModel
+
+<section id="aa-signin" class="signin-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-signin-area">
+                    <div class="aa-signin-form">
+                        <div class="aa-signin-form-title">
+                            <a class="aa-property-home" href="#">ReKreator</a>
+                            <h4>Create your account and Stay with us</h4>
+                        </div>
+                        <form class="contactform" id="ajax-register-form">
+                            <div class="validation text-danger" asp-validation-summary="ModelOnly"></div>
+                            <div class="aa-single-field">
+                                <label for="firstname">First name </label>
+                                @Html.EditorFor(model => model.FirstName)
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+                            <div class="aa-single-field">
+                                <label for="lastname">Last name </label>
+                                @Html.EditorFor(model => model.LastName)
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+                            <div class="aa-single-field">
+                                <label for="username">Username <span class="required">*</span></label>
+                                @Html.EditorFor(model => model.UserName)
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+                            <div class="aa-single-field">
+                                <label for="email">Email <span class="required">*</span></label>
+                                @Html.EditorFor(model => model.Email)
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="aa-single-field">
+                                <label for="password">Password <span class="required">*</span></label>
+                                @Html.EditorFor(model => model.Password)
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="aa-single-field">
+                                <label for="passwordConfirmation">Confirm Password <span class="required">*</span></label>
+                                @Html.EditorFor(model => model.PasswordConfirmation)
+                                <span asp-validation-for="PasswordConfirmation" class="text-danger"></span>
+                            </div>
+                            <div class="aa-single-submit aa-center-submit-btn">
+                                <input type="button" value="Create Account" name="submit" class="register-submit">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

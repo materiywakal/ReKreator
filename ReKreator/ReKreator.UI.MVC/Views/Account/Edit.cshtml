@@ -1,0 +1,66 @@
+﻿@using ReKreator.Domain.Enums
+@model ReKreator.UI.MVC.Models.Account.AccountEditViewModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Edit";
+}
+
+<section id="aa-property-header" style="min-height: 100px; max-height: 250px">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-property-header-inner">
+                    <h2 style="margin-top: 10px">Profile</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="aa-contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-contact-area">
+                    <div class="aa-contact-bottom">
+                        <div class="aa-title">
+                            <h2>Edit your account information</h2>
+                            <span></span>
+                            <p>Required fields are marked <strong class="required">*</strong></p>
+                        </div>
+                        <div class="aa-contact-form">
+                            <form asp-action="Edit" class="contactform">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <p>
+                                    <label asp-for="FirstName"></label>
+                                    <input asp-for="FirstName" />
+                                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                                </p>
+                                <p>
+                                    <label asp-for="LastName"></label>
+                                    <input asp-for="LastName" />
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
+                                </p>
+                                <p>
+                                    <label asp-for="Email">Email <span class="required">*</span></label>
+                                    <input asp-for="Email" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </p>
+                                <p>
+                                    <label asp-for="NoveltyMailingPeriod"></label>
+                                    <select asp-for="NoveltyMailingPeriod" asp-items="Html.GetEnumSelectList<NoveltyMailingPeriod>()"></select>
+                                </p>
+                                <p class="form-submit aa-center-submit-btn">
+                                    <input type="submit" name="submit" class="aa-browse-btn" value="Save">
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <a asp-action="Profile" class="aa-back-link">Back to profile</a>
+    </div>
+</section>

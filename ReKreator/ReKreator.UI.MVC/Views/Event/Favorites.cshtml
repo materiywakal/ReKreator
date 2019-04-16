@@ -1,0 +1,101 @@
+﻿@using ReKreator.Domain.Enums
+@using ReKreator.UI.MVC.Models.Event.Enums
+@model ReKreator.UI.MVC.Models.EventHolding.FavoritesViewModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Favorites";
+}
+
+<section id="aa-property-header" style="min-height: 100px; max-height: 250px">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-property-header-inner">
+                    <h2 style="margin-top: 10px">Favorites</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="aa-advance-search">
+    <div class="container">
+        <div class="aa-advance-search-area" style="margin-top: -25px; min-height: 100px">
+            <div class="form">
+                <div class="aa-advance-search-top">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="aa-single-advance-search">
+                                <label for="favorites-keyword-search">Keyword</label>
+                                <input type="text" id="favorites-keyword-search" placeholder="Title, description, place">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="aa-single-advance-search">
+                                <label for="favorites-bottom-line-date-search">Bottom date line</label>
+                                <input type="date" id="favorites-bottom-line-date-search" style="font-size: 15px" />
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="aa-single-advance-search">
+                                <label for="favorites-top-line-date-search">Top date line</label>
+                                <input type="date" id="favorites-top-line-date-search" style="font-size: 15px" />
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="aa-single-advance-search">
+                                <label for="favorites-genre-search">Genre</label>
+                                <select asp-for="@Model.EventHoldingFilter.Genres" asp-items="Html.GetEnumSelectList<EventGenreViewModel>()" id="favorites-genre-search"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="aa-single-advance-search">
+                                <label for="favorites-type-search">Type</label>
+                                <select asp-for="@Model.EventHoldingFilter.Type" asp-items="Html.GetEnumSelectList<EventType>()" id="favorites-type-search"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="aa-single-advance-search">
+                                <input class="aa-search-btn" id="favorites-clear-filter" type="button" value="Clear" style="font-size: 15px; height: 5rem; margin-top: 1rem">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="aa-blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-blog-area">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="aa-blog-content">
+                                <div class="row" id="paged-data">
+                                    @Html.Partial("EventHoldingsItems", Model.EventHoldings)
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="aa-properties-content-bottom">
+                                            <nav style="text-align: center">
+                                                <div id="pagination"></div>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript" src="~/js/favoritesPagination.js"></script>
