@@ -55,4 +55,4 @@ TestResult.xml
 *.ps1
 
 privatesettings.json
-src/ReKreator/ReKreator.Scheduler/privateApp.config
+privateApp.config
