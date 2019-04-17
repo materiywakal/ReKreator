@@ -7,23 +7,24 @@ namespace ReKreator.UI.MVC.Models.Account
 {
     public class AccountProfileViewModel
     {
-        [Display(Name = "Username")]
+        [Display(Name = "Логин")]
         public string UserName { get; set; }
 
-        [Display(Name = "First name")]
+        [Display(Name = "Имя")]
         public string FirstName { get; set; }
 
-        [Display(Name = "Last name")]
+        [Display(Name = "Фамилия")]
         public string LastName { get; set; }
 
         public string Email { get; set; }
 
+        [Display(Name = "Роль")]
         public ICollection<string> Roles { get; set; }
 
-        [Display(Name = "Period of novelty mailing")]
+        [Display(Name = "Уведомления о новинках")]
         public NoveltyMailingPeriod NoveltyMailingPeriod { get; set; }
 
-        [Display(Name = "Registration date")]
+        [Display(Name = "Дата регистрации")]
         public DateTime RegistrationDate { get; set; }
     }
 }

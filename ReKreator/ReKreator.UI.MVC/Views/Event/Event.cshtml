@@ -16,8 +16,7 @@
             url: "/Event/AddToFavorites?="+holdingId,
             contentType: "application/json; charset=utf-8",
             success: function() {
-                alert("Favorite event added.");
-                $("#" + holdingId)[0].innerText = "In favorites";
+                $("#" + holdingId)[0].innerText = "В избранном";
                 $("#" + holdingId).prop("onclick", null).off("click");
             },
             timeout: 5000
@@ -60,12 +59,12 @@
                                         <article class="aa-blog-single aa-blog-details">
                                             <figure class="aa-blog-img" align="center">
                                                 <a href="#"><img alt="img" src="@Model.PosterUrl"></a>
-                                                <span class="aa-date-tag" style="font-size: 22px"><a href="@Model.SourceUrl">Origin</a></span>
+                                                <span class="aa-date-tag" style="font-size: 22px"><a href="@Model.SourceUrl">Источник</a></span>
                                             </figure>
                                             <div class="aa-blog-single-content">
                                                 <h2 align="center">@Model.Title</h2>
                                                 <p>@Model.Description</p>
-                                                <h2 align="center">Event holdings</h2>
+                                                <h2 align="center">Расписание события</h2>
                                                 @foreach (var obj in @Model.EventsHoldings)
                                                 {
                                                     <div class="@(count<15?"":"hiddendiv")" style="@(count<15?"display:block;":"display:none;")">
@@ -83,11 +82,11 @@
                                                             }
                                                             if (!flag)
                                                             {
-                                                                <button id="@obj.EventHoldingId" onclick="ToFavorites(@obj.EventHoldingId)" style="background-color: transparent; color: #555; border: 2px solid #ccc; font-size: 10px; font-weight: 400; margin-top: 10px; padding: 6px 12px; transition: all 0.5s;">To favorites</button>
+                                                                <button id="@obj.EventHoldingId" onclick="ToFavorites(@obj.EventHoldingId)" style="background-color: transparent; color: #555; border: 2px solid #ccc; font-size: 10px; font-weight: 400; margin-top: 10px; padding: 6px 12px; transition: all 0.5s;">В избранное</button>
                                                             }
                                                             else
                                                             {
-                                                                <button id="@obj.EventHoldingId" style="background-color: transparent; color: #555; border: 2px solid #ccc; font-size: 10px; font-weight: 400; margin-top: 10px; padding: 6px 12px; transition: all 0.5s;">In favorites</button>
+                                                                <button id="@obj.EventHoldingId" style="background-color: transparent; color: #555; border: 2px solid #ccc; font-size: 10px; font-weight: 400; margin-top: 10px; padding: 6px 12px; transition: all 0.5s;">В избранном</button>
                                                             }
                                                         }
                                                     </div>
@@ -95,7 +94,7 @@
                                                 }
                                                 @if (count >= 15)
                                                 {
-                                                    <button onclick="ShowMore(this)" style="background-color: transparent; color: #555; border: 2px solid #ccc; font-size: 16px; font-weight: 400; margin-top: 10px; padding: 6px 12px; transition: all 0.5s;">Show more</button>
+                                                    <button onclick="ShowMore(this)" style="background-color: transparent; color: #555; border: 2px solid #ccc; font-size: 16px; font-weight: 400; margin-top: 10px; padding: 6px 12px; transition: all 0.5s;">Показать больше</button>
                                                 }
                                             </div>
                                         </article>

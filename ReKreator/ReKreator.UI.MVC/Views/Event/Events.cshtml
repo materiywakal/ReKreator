@@ -28,25 +28,25 @@
                         <input type="hidden" value="@Model.EventFilter.Type" id="event-type"/>
                         <div class="col-md-3">
                             <div class="aa-single-advance-search">
-                                <label for="events-keyword-search">Keyword</label>
-                                <input type="text" id="events-keyword-search" placeholder="Title or description">
+                                <label for="events-keyword-search">Ключевое слово</label>
+                                <input type="text" id="events-keyword-search" placeholder="Название или описание">
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="aa-single-advance-search">
-                                <label for="events-bottom-line-date-search">Bottom date line</label>
+                                <label for="events-bottom-line-date-search">Начало</label>
                                 <input type="date" id="events-bottom-line-date-search" style="font-size: 15px" />
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="aa-single-advance-search">
-                                <label for="events-top-line-date-search">Top date line</label>
+                                <label for="events-top-line-date-search">Окончание</label>
                                 <input type="date" id="events-top-line-date-search" style="font-size: 15px" />
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="aa-single-advance-search">
-                                <label for="events-genre-search" style="margin-top: -1rem">Genre</label>
+                                <label for="events-genre-search" style="margin-top: -1rem">Жанр</label>
                                 <select asp-for="@Model.EventFilter.Genres" asp-items="@(ViewData["type"].ToString() == "Movie" ? Html.GetEnumSelectList<MovieGenresViewModel>(): 
                                                                                              ViewData["type"].ToString() == "Theatre" ? Html.GetEnumSelectList<TheatreGenresViewModel>() :
                                                                                                  ViewData["type"].ToString() == "Concert" ? Html.GetEnumSelectList<ConcertGenresViewModel>() : Html.GetEnumSelectList<EventGenreViewModel>())" id="events-genre-search"></select>
@@ -54,13 +54,13 @@
                         </div>
                         <div class="col-md-2">
                             <div class="aa-single-advance-search">
-                                <label for="events-obsolete-search" style="display: block">Show obsoletes?</label>
+                                <label for="events-obsolete-search" style="display: block;">Прошедшие</label>
                                 <input name="is-show-obsolete" type="checkbox" id="events-obsolete-search" style="zoom: 2" />
                             </div>
                         </div>
                         <div class="col-md-1">
                             <div class="aa-single-advance-search">
-                                <input class="aa-search-btn" id="events-clear-filter" type="button" value="Clear" style="font-size: 15px; height: 5rem; margin-top: 1rem">
+                                <input class="aa-search-btn" id="events-clear-filter" type="button" value="Очистить" style="font-size: 10px; height: 5rem; margin-top: 1rem">
                             </div>
                         </div>
                     </div>

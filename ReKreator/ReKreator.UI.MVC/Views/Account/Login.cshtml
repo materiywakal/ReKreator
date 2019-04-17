@@ -8,24 +8,24 @@
                     <div class="aa-signin-form">
                         <div class="aa-signin-form-title">
                             <a class="aa-property-home" href="#">ReKreator</a>
-                            <h4>Sign in to your account</h4>
+                            <h4>Войти в аккаунт</h4>
                         </div>
                         <form class="contactform" id="ajax-login-form">
                             <div class="validation text-danger" asp-validation-summary="ModelOnly"></div>
                             <div class="aa-single-field">
-                                <label for="login">Username <span class="required">*</span></label>
+                                <label for="login">Имя пользователя <span class="required">*</span></label>
                                 @Html.EditorFor(model => model.Login)
                             </div>
                             <div class="aa-single-field">
-                                <label for="password">Password <span class="required">*</span></label>
+                                <label for="password">Пароль <span class="required">*</span></label>
                                 @Html.EditorFor(model => model.Password)
                             </div>
                             <div class="aa-single-field">
-                                <label for="RememberMe">Remember Me? </label>
+                                <label for="RememberMe">Запомнить </label>
                                 @Html.EditorFor(model => model.RememberMe)
                             </div>
                             <div class="aa-single-submit aa-center-submit-btn">
-                                <input type="button" value="Login" class="login-submit-btn" name="submit">
+                                <input type="button" value="Войти" class="login-submit-btn" name="submit">
                             </div>
                         </form>
                     </div>

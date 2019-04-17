@@ -77,10 +77,7 @@ namespace ReKreator.Parsing
 
         private Event ParseMovie(IParentNode document)
         {
-            var subTitle = document.QuerySelector(_movieSubTitleSelector);
-            var title = subTitle == null
-                ? document.QuerySelector(_movieTitleSelector).TextContent
-                : subTitle.TextContent;
+            var title = document.QuerySelector(_movieTitleSelector).TextContent;
             var description = document.QuerySelector(_movieDescriptionSelector).TextContent
                 .Split("\nПоделиться:\n")[0]
                 .TrimStart(' ', '\n', '\t').TrimEnd(' ', '\n', '\t');

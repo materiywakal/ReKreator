@@ -1,11 +1,11 @@
 ﻿<div class="user-profile-ddl btn-group aa-user-submenu-group">
     <a class="aa-username" data-toggle="dropdown">@(User.Identity.Name ?? "unknown")</a>
     <ul class="dropdown-menu dropdown-menu-right" role="menu">
-        <li><a asp-action="Profile" asp-controller="Account" class="aa-user-submenu-item">Profile</a></li>
-        <li><a asp-action="Favorites" asp-controller="Event" class="aa-user-submenu-item">Favorites</a></li>
+        <li><a asp-action="Profile" asp-controller="Account" class="aa-user-submenu-item">Профиль</a></li>
+        <li><a asp-action="Favorites" asp-controller="Event" class="aa-user-submenu-item">Избранные</a></li>
         <li><div class="dropdown-divider"></div></li>
-        <li><a asp-action="EditPassword" asp-controller="Account" class="aa-user-submenu-item">Edit password</a></li>
+        <li><a asp-action="EditPassword" asp-controller="Account" class="aa-user-submenu-item">Редактировать пароль</a></li>
         <li><div class="dropdown-divider"></div></li>
-        <li>@Html.ActionLink("Log out", "LogOut", "Account")</li>
+        <li>@Html.ActionLink("Выйти", "LogOut", "Account")</li>
     </ul>
 </div>

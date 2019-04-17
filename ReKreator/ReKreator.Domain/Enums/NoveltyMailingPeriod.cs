@@ -1,10 +1,12 @@
-﻿namespace ReKreator.Domain.Enums
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ReKreator.Domain.Enums
 {
     public enum NoveltyMailingPeriod
     {
         None = 0,
-        Day = 24,
-        Week = 168,
-        Month = 720
+        [Display(Name = "День")] Day = 24,
+        [Display(Name = "Неделя")] Week = 168,
+        [Display(Name = "Месяц")] Month = 720
     }
 }

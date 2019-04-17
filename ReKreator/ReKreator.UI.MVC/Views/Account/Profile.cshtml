@@ -1,9 +1,10 @@
 ﻿@using ReKreator.BL.Constants
+@using ReKreator.Domain.Enums
 @model ReKreator.UI.MVC.Models.Account.AccountProfileViewModel
 
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = "Профиль";
 }
 
 <section id="aa-property-header" style="min-height: 100px; max-height: 250px">
@@ -11,7 +12,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="aa-property-header-inner">
-                    <h2 style="margin-top: 10px">Profile</h2>
+                    <h2 style="margin-top: 10px">Профиль</h2>
                 </div>
             </div>
         </div>
@@ -59,8 +60,8 @@
                                     <label>: @Model.RegistrationDate.ToString(DateTimeFormats.ShortDateFormat)</label>
                                 </p>
                                 <div class="form-submit">
-                                    <a asp-action="Edit"><input type="button" value="Edit profile"></a>
-                                    <a asp-action="EditPassword"><input type="button" value="Edit password"></a>
+                                    <a asp-action="Edit"><input type="button" value="Редактировать профиль"></a>
+                                    <a asp-action="EditPassword"><input type="button" value="Изменить пароль"></a>
                                 </div>
                             </div>
                         </div>
@@ -69,6 +70,6 @@
             </div>
         </div>
         <hr />
-        <a asp-action="Index" asp-controller="Home">Go to home</a>
+        <a asp-action="Index" asp-controller="Home">На главную</a>
     </div>
 </section>

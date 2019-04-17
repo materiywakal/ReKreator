@@ -4,7 +4,7 @@
 
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "Favorites";
+    ViewData["Title"] = "Избранное";
 }
 
 <section id="aa-property-header" style="min-height: 100px; max-height: 250px">
@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="aa-property-header-inner">
-                    <h2 style="margin-top: 10px">Favorites</h2>
+                    <h2 style="margin-top: 10px">Избранное</h2>
                 </div>
             </div>
         </div>
@@ -28,37 +28,37 @@
                     <div class="row">
                         <div class="col-md-3">
                             <div class="aa-single-advance-search">
-                                <label for="favorites-keyword-search">Keyword</label>
-                                <input type="text" id="favorites-keyword-search" placeholder="Title, description, place">
+                                <label for="favorites-keyword-search">Ключевое слово</label>
+                                <input type="text" id="favorites-keyword-search" placeholder="Название или описание">
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="aa-single-advance-search">
-                                <label for="favorites-bottom-line-date-search">Bottom date line</label>
+                                <label for="favorites-bottom-line-date-search">Начало</label>
                                 <input type="date" id="favorites-bottom-line-date-search" style="font-size: 15px" />
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="aa-single-advance-search">
-                                <label for="favorites-top-line-date-search">Top date line</label>
+                                <label for="favorites-top-line-date-search">Окончание</label>
                                 <input type="date" id="favorites-top-line-date-search" style="font-size: 15px" />
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="aa-single-advance-search">
-                                <label for="favorites-genre-search">Genre</label>
+                                <label for="favorites-genre-search">Жанр</label>
                                 <select asp-for="@Model.EventHoldingFilter.Genres" asp-items="Html.GetEnumSelectList<EventGenreViewModel>()" id="favorites-genre-search"></select>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="aa-single-advance-search">
-                                <label for="favorites-type-search">Type</label>
+                                <label for="favorites-type-search">Тип</label>
                                 <select asp-for="@Model.EventHoldingFilter.Type" asp-items="Html.GetEnumSelectList<EventType>()" id="favorites-type-search"></select>
                             </div>
                         </div>
                         <div class="col-md-1">
                             <div class="aa-single-advance-search">
-                                <input class="aa-search-btn" id="favorites-clear-filter" type="button" value="Clear" style="font-size: 15px; height: 5rem; margin-top: 1rem">
+                                <input class="aa-search-btn" id="favorites-clear-filter" type="button" value="Очистить" style="font-size: 15px; height: 5rem; margin-top: 1rem">
                             </div>
                         </div>
                     </div>

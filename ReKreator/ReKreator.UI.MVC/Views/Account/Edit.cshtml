@@ -3,7 +3,7 @@
 
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Редактирование";
 }
 
 <section id="aa-property-header" style="min-height: 100px; max-height: 250px">
@@ -25,9 +25,9 @@
                 <div class="aa-contact-area">
                     <div class="aa-contact-bottom">
                         <div class="aa-title">
-                            <h2>Edit your account information</h2>
+                            <h2>Редактирование информации аккаунта</h2>
                             <span></span>
-                            <p>Required fields are marked <strong class="required">*</strong></p>
+                            <p>Обязательные поля помечены <strong class="required">*</strong></p>
                         </div>
                         <div class="aa-contact-form">
                             <form asp-action="Edit" class="contactform">
@@ -52,7 +52,7 @@
                                     <select asp-for="NoveltyMailingPeriod" asp-items="Html.GetEnumSelectList<NoveltyMailingPeriod>()"></select>
                                 </p>
                                 <p class="form-submit aa-center-submit-btn">
-                                    <input type="submit" name="submit" class="aa-browse-btn" value="Save">
+                                    <input type="submit" name="submit" class="aa-browse-btn" value="Сохранить">
                                 </p>
                             </form>
                         </div>
@@ -61,6 +61,6 @@
             </div>
         </div>
         <hr />
-        <a asp-action="Profile" class="aa-back-link">Back to profile</a>
+        <a asp-action="Profile" class="aa-back-link">Вернуться к профилю</a>
     </div>
 </section>
