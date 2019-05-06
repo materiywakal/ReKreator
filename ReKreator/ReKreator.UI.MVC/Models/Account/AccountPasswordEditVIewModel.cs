@@ -4,20 +4,20 @@ namespace ReKreator.UI.MVC.Models.Account
 {
     public class AccountPasswordEditVIewModel
     {
-        [Required(ErrorMessage = "Old password is required")]
+        [Required(ErrorMessage = "Требуется ввести старый пароль")]
         [DataType(DataType.Password)]
-        [Display(Name = "Old password")]
+        [Display(Name = "Старый пароль")]
         public string OldPassword { get; set; }
 
-        [Required(ErrorMessage = "New password is required")]
+        [Required(ErrorMessage = "Требуется ввести новый пароль")]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "Новый пароль")]
         public string NewPassword { get; set; }
 
-        [Compare("NewPassword", ErrorMessage = "Passwords do not match")]
-        [Required(ErrorMessage = "New password confirmation is required")]
+        [Compare("NewPassword", ErrorMessage = "Пароли не совпадают")]
+        [Required(ErrorMessage = "Требуется подтвердить пароль")]
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
+        [Display(Name = "Подтверждение пароля")]
         public string NewPasswordConfirmation { get; set; }
     }
 }

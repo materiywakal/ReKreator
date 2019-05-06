@@ -43,17 +43,7 @@
                                 </p>
                                 <p>
                                     <label asp-for="@Model.NoveltyMailingPeriod"></label>
-                                    <label>: @Model.NoveltyMailingPeriod</label>
-                                </p>
-                                <p>
-                                    <label asp-for="@Model.Roles"></label>
-                                    <label>
-                                        :
-                                        @foreach (var role in @Model.Roles)
-                                        {
-                                            @role
-                                        }
-                                    </label>
+                                    <label>: @Model.NoveltyMailingPeriod.GetDescription()</label>
                                 </p>
                                 <p>
                                     <label asp-for="@Model.RegistrationDate"></label>

@@ -3,7 +3,7 @@
 
 @{
     Layout = "_Layout";
-    ViewData["Title"] = ViewData["type"] + "s";
+    ViewData["Title"] = ViewData["type"];
 }
 
 <section id="aa-property-header" style="min-height: 100px; max-height: 250px">
@@ -47,9 +47,9 @@
                         <div class="col-md-2">
                             <div class="aa-single-advance-search">
                                 <label for="events-genre-search" style="margin-top: -1rem">Жанр</label>
-                                <select asp-for="@Model.EventFilter.Genres" asp-items="@(ViewData["type"].ToString() == "Movie" ? Html.GetEnumSelectList<MovieGenresViewModel>(): 
-                                                                                             ViewData["type"].ToString() == "Theatre" ? Html.GetEnumSelectList<TheatreGenresViewModel>() :
-                                                                                                 ViewData["type"].ToString() == "Concert" ? Html.GetEnumSelectList<ConcertGenresViewModel>() : Html.GetEnumSelectList<EventGenreViewModel>())" id="events-genre-search"></select>
+                                <select asp-for="@Model.EventFilter.Genres" asp-items="@(ViewData["type"].ToString() == "Кино" ? Html.GetEnumSelectList<MovieGenresViewModel>(): 
+                                                                                             ViewData["type"].ToString() == "Спектакли" ? Html.GetEnumSelectList<TheatreGenresViewModel>() :
+                                                                                                 ViewData["type"].ToString() == "Концерты" ? Html.GetEnumSelectList<ConcertGenresViewModel>() : Html.GetEnumSelectList<EventGenreViewModel>())" id="events-genre-search"></select>
                             </div>
                         </div>
                         <div class="col-md-2">

@@ -59,7 +59,7 @@ namespace ReKreator.UI.MVC.Controllers
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user != null && user.UserName != User.Identity.Name)
             {
-                ModelState.AddModelError("Email", $"User with email '{model.Email}' already exist");
+                ModelState.AddModelError("Email", $"Пользователь с почтой '{model.Email}' уже существует");
                 return View("Edit", model);
             }
             user = await _userService.GetAsync(u => u.UserName == User.Identity.Name, u => u.UserMailing);
@@ -133,11 +133,11 @@ namespace ReKreator.UI.MVC.Controllers
 
             if (await _userManager.FindByNameAsync(model.UserName) != null)
             {
-                ModelState.AddModelError("UserName", $"User with username '{model.UserName}' already exists");
+                ModelState.AddModelError("UserName", $"Пользователь '{model.UserName}' уже существует");
             }
             else if (await _userManager.FindByEmailAsync(model.Email) != null)
             {
-                ModelState.AddModelError("Email", $"User with email '{model.Email}' already exists");
+                ModelState.AddModelError("Email", $"Пользователь с почтой '{model.Email}' уже существует");
             }
             else
             {
@@ -155,14 +155,14 @@ namespace ReKreator.UI.MVC.Controllers
                         "Account",
                         new {Username = user.UserName, Token = token},
                         protocol: HttpContext.Request.Scheme);
-                    await _sender.MessageToUserAsync(user, "Account confirmation",
-                        $"<span>Please, confirm your account. Follow this link: </span><a href='{callbackUrl}'>link</a>");
+                    await _sender.MessageToUserAsync(user, "Подтверждение аккаунта",
+                        $"<span>Пожалуйста подтвердите свой аккаунт. Перейдите по этой </span><a href='{callbackUrl}'>ссылке</a>.");
 
                     return RedirectToAction("LogIn",
                         new
                         {
                             message =
-                                "To complete the registration, check the email and click on the link indicated in the letter."
+                                "Для продолжения регистрации следуйте инструкциям отправленным на вашу почту."
                         });
                 }
 
@@ -182,14 +182,14 @@ namespace ReKreator.UI.MVC.Controllers
             var user = await _userManager.FindByNameAsync(username);
             if (user == null)
             {
-                ViewData["EmailConfirmationResult"] = "Email was not confirmed :(";
+                ViewData["EmailConfirmationResult"] = "Почта не подтверждена :(";
                 return View("EmailConfirmationResult");
             }
             var result = await _userManager.ConfirmEmailAsync(user, token);
             if (!result.Succeeded)
-                ViewData["EmailConfirmationResult"] = "Email was not confirmed :(";
+                ViewData["EmailConfirmationResult"] = "Почта не подтверждена :(";
             else
-                ViewData["EmailConfirmationResult"] = "Email confirmed!";
+                ViewData["EmailConfirmationResult"] = "Почта подтверждена!";
 
             return View("EmailConfirmationResult");
         }
@@ -215,13 +215,13 @@ namespace ReKreator.UI.MVC.Controllers
             var user = await _userManager.FindByNameAsync(model.Login);
             if (user != null && !await _userManager.IsEmailConfirmedAsync(user))
             {
-                ModelState.AddModelError(string.Empty, "Email not confirmed. Please, check your email");
+                ModelState.AddModelError(string.Empty, "Почта не подтверждена. Пожалуйста, проверьте свой Email.");
                 return PartialView("Login");
             }
             var result = await _signInManager.PasswordSignInAsync(model.Login, model.Password, model.RememberMe, lockoutOnFailure: false);
             if (!result.Succeeded)
             {
-                ModelState.AddModelError(string.Empty, "Incorrect login or password");
+                ModelState.AddModelError(string.Empty, "Неверный логин или пароль.");
                 return PartialView("Login");
             }
 

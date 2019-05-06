@@ -87,7 +87,19 @@ namespace ReKreator.UI.MVC.Controllers
             var events = await _eventService.GetAllAsync(e => e.Type == type && e.ExpiryDate >= DateTime.Today);
 
             ViewData["totalSize"] = events.Count();
-            ViewData["type"] = type.ToString();
+            switch (type.ToString())
+            {
+                case "Movie":
+                    ViewData["type"] = "Кинофильмы";
+                    break;
+                case "Concert":
+                    ViewData["type"] = "Концерты";
+                    break;
+                case "Theatre":
+                    ViewData["type"] = "Спектакли";
+                    break;
+            }
+
             events = events.Skip((filter.PageNumber - 1) * filter.PageSize).Take(filter.PageSize);
 
             var eventsViewModel = new EventsViewModel
