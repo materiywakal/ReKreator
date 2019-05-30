@@ -1,4 +1,5 @@
 ﻿using System.Configuration;
+using System.Threading;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -25,10 +26,7 @@ namespace ReKreator.Scheduler
                 NewEventsScheduler.Start();
                 FavoritesScheduler.Start();
                 ParserScheduler.Start();
-                while (true)
-                {
-
-                }
+                Thread.CurrentThread.Join();
             }
             finally
             {
