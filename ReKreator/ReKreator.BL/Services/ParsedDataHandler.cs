@@ -29,7 +29,7 @@ namespace ReKreator.BL.Services
             foreach (var item in container)
             {
                 var dbItem = await _dbHandler.EventRepository.GetAsync(o =>
-                    o.SourceUrl.Equals(item.SourceUrl, StringComparison.CurrentCulture));               
+                    o.SourceUrl.Equals(item.SourceUrl, StringComparison.CurrentCulture));
                 if (dbItem == null)
                 {
                     item.EventsHoldings = null;
@@ -72,8 +72,11 @@ namespace ReKreator.BL.Services
         {
             foreach (var item in container)
             {
-                item.Event = await _dbHandler.EventRepository.GetAsync(o => o.SourceUrl == item.Event.SourceUrl) ?? item.Event;
-                item.EventPlace = await _dbHandler.EventPlaceRepository.GetAsync(o => o.Title == item.EventPlace.Title) ?? item.EventPlace;
+                item.Event = await _dbHandler.EventRepository.GetAsync(o => o.SourceUrl == item.Event.SourceUrl) ??
+                             item.Event;
+                item.EventPlace =
+                    await _dbHandler.EventPlaceRepository.GetAsync(o => o.Title == item.EventPlace.Title) ??
+                    item.EventPlace;
 
                 var dbItem = await _dbHandler.EventHoldingRepository.GetAsync(o =>
                     o.Event == item.Event && o.EventPlace == item.EventPlace && o.Time == item.Time);

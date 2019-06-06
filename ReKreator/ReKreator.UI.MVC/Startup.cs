@@ -49,7 +49,7 @@ namespace ReKreator.UI.MVC
             });
 
             services.AddDbContext<EventContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("mw")));
+                options.UseSqlServer(Configuration.GetConnectionString("azure")));
 
             services.AddIdentity<User, IdentityRole<long>>()
                 .AddEntityFrameworkStores<EventContext>()

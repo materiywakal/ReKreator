@@ -18,7 +18,7 @@ namespace ReKreator.UI.MVC.Controllers
             var exceptionFeature = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
 
             ViewData["StatusCode"] = 500;
-            ViewData["Message"] = "Server can't handle this query. Please try again later.";
+            ViewData["Message"] = "Сервер не может обработать запрос. Пожалуйста, попробуйте позже.";
 
             if (exceptionFeature != null && !WithoutLog)
             {
@@ -31,7 +31,7 @@ namespace ReKreator.UI.MVC.Controllers
         public IActionResult Error404()
         {
             ViewData["StatusCode"] = 404;
-            ViewData["Message"] = "Resource not found.";
+            ViewData["Message"] = "Запрашиваемый ресурс не найден.";
             return View("Error");
         }
     }

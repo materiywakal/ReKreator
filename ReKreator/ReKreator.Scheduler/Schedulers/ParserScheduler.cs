@@ -20,7 +20,8 @@ namespace ReKreator.Scheduler.Schedulers
 
             ITrigger trigger = TriggerBuilder.Create()
                 .WithIdentity("SomeParser", "Parsers")
-                .WithCronSchedule("0/1 0 0,12 ? * * *")
+                .StartNow()
+                //.WithCronSchedule("0/1 0 0,12 ? * * *")
                 .Build();
 
             await scheduler.ScheduleJob(job, trigger);

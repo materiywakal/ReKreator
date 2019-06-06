@@ -22,7 +22,6 @@ namespace ReKreator.UI.MVC.Controllers
 
         public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IUserService userService, IMapper mapper, ISender sender)
         {
-
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
             _signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
@@ -142,11 +141,10 @@ namespace ReKreator.UI.MVC.Controllers
             else
             {
                 var user = _mapper.Map<User>(model);
-                user.UserMailing = new UserMailing();
                 user.RegistrationDate = DateTime.Now;
                 user.UserMailing = new UserMailing();
                 var result = await _userManager.CreateAsync(user, model.Password);
-
+             
                 if (result.Succeeded)
                 {
                     var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);

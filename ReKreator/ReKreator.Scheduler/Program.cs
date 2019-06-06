@@ -39,7 +39,7 @@ namespace ReKreator.Scheduler
             var optionsBuilder = new DbContextOptionsBuilder<EventContext>();
             var options = optionsBuilder
                 .UseSqlServer(
-                    ConfigurationManager.ConnectionStrings["mw"].ToString())
+                    ConfigurationManager.ConnectionStrings["azure"].ToString())
                 .Options;
             var eventContext = new EventContext(options);
 
